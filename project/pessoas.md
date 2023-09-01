@@ -12,12 +12,14 @@
 - [ ] Telefone
 - [ ] Telefone Residencial
 - [ ] Email
+- [ ] Sexo
 - [ ] Endereço
+- [ ] Número
+- [ ] Complemento
+- [ ] Bairro
 - [ ] Cidade
 - [ ] Estado
 - [ ] CEP
-- [ ] Data de Cadastro
-- [ ] Data de Atualização
 - [ ] Status
 
 ##### - Tabelas:
@@ -26,10 +28,10 @@
 
 - [ ] Pessoas - `pessoas`
 
-| id_pessoa | nome | nome_social | email | cpf | rg | nome_pai | nome_mae | data_nascimento | created_at | updated_at | status |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | ---: | ---: | ---: | ---: |
-| 1 | João da Silva | João | joao@exemple.com | 000.000.000-01 | 00000001 | José da Silva | Maria da Silva | 1990-01-01 | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
-| 2 | Maria de Souza | Maria | maria@exemple.com | 000.000.000-02 | 00000002 | José de Souza | Maria de Souza | 1990-01-01 | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
+| id_pessoa | nome | nome_social | email | cpf | rg | nome_pai | nome_mae | data_nascimento | sexo | created_at | updated_at | status |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | ---: | ---: | ---: | ---: |
+| 1 | João da Silva | João | joao@exemple.com | 000.000.000-01 | 00000001 | José da Silva | Maria da Silva | 1990-01-01 | masculino | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
+| 2 | Maria de Souza | Maria | maria@exemple.com | 000.000.000-02 | 00000002 | José de Souza | Maria de Souza | 1990-01-01 | feminino | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
 
 - [ ] Telefones - `pessoas_telefones`
 
@@ -63,9 +65,22 @@
 
 ##### - Ações:
 
+###### - Pessoas:
+
 - [ ] Cadastrar
 - [ ] Editar
 - [ ] Excluir (Apenas desativar)
 - [ ] Listar
 - [ ] Pesquisar
-- [ ] Visualizar
+
+###### - Telefones:
+
+- [ ] Cadastrar
+- [ ] Editar
+- [ ] Excluir (Apenas desativar)
+
+###### - Endereços:
+
+- [ ] Cadastrar
+- [ ] Editar
+- [ ] Excluir (Apenas desativar)
