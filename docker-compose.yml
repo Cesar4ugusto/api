@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres
+    container_name: dbservice
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=dbservice
+      - POSTGRES_PASSWORD=dbS3rv1c3@2023
+      - POSTGRES_DB=dbservice
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local

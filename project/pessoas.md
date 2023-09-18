@@ -2,85 +2,96 @@
 
 #### Dados:
 
-- [ ] Nome
-- [ ] Nome Social
-- [ ] CPF
-- [ ] RG
-- [ ] Nome Pai
-- [ ] Nome Mãe
-- [ ] Data de Nascimento
-- [ ] Telefone
-- [ ] Telefone Residencial
-- [ ] Email
-- [ ] Sexo
-- [ ] Endereço
-- [ ] Número
-- [ ] Complemento
-- [ ] Bairro
-- [ ] Cidade
-- [ ] Estado
-- [ ] CEP
-- [ ] Status
+- [x] Nome `*`
+- [x] Nome Social
+- [x] CPF `*`
+- [x] RG `*`
+- [x] Nome Pai `*`
+- [x] Nome Mãe `*`
+- [x] Data de Nascimento `*`
+- [x] Telefone `*`
+- [x] Telefone Tipo (1 - Celular, 2 - Residencial, 3 - Comercial) `*`
+- [x] Email `*`
+- [x] Email Alternativo
+- [x] Senha
+- [x] Avatar
+- [x] Sexo (true - Masculino, false - Feminino) `*`
+- [x] Endereço `*`
+- [x] Número `*`
+- [x] Complemento `*`
+- [x] Bairro `*`
+- [x] Cidade `*`
+- [x] Estado `*`
+- [x] CEP `*`
+- [x] Endereço Tipo (1 - Residencial, 2 - Comercial) `*`
 
 ##### - Tabelas:
 
 . Nomenclatura da tabela: todas as tabelas relacionadas a pessoas (clientes, agentes) são especificadas pelo sufixo `pessoas_` e `nome_tabela`
 
-- [ ] Pessoas - `pessoas`
+- [x] Pessoas - `pessoas`
 
-| id_pessoa | nome | nome_social | email | cpf | rg | nome_pai | nome_mae | data_nascimento | sexo | created_at | updated_at | status |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | ---: | ---: | ---: | ---: |
-| 1 | João da Silva | João | joao@exemple.com | 000.000.000-01 | 00000001 | José da Silva | Maria da Silva | 1990-01-01 | masculino | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
-| 2 | Maria de Souza | Maria | maria@exemple.com | 000.000.000-02 | 00000002 | José de Souza | Maria de Souza | 1990-01-01 | feminino | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
+| id_pessoa | nome | nome_social | email | cpf | rg | nome_pai | nome_mae | data_nascimento | sexo | status |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | ---: | ---: |
+| 1 | João da Silva | João | joao@exemple.com | 000.000.000-01 | 00000001 | José da Silva | Maria da Silva | 1990-01-01 | masculino | 1 |
+| 2 | Maria de Souza | Maria | maria@exemple.com | 000.000.000-02 | 00000002 | José de Souza | Maria de Souza | 1990-01-01 | feminino | 1 |
 
-- [ ] Telefones - `pessoas_telefones`
+- [x] Telefones - `pessoas_telefones`
 
-| id_telefone | id_pessoa | telefone | telefone_tipo | created_at | updated_at | status |
-| :---: | :---: | :---: | :---: | ---: | ---: | ---: |
-| 1 | 1 | (00) 90000-0000 | 1 | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
-| 2 | 1 | (00) 0000-0000 | 2 | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
+| id_telefone | id_pessoa | telefone | telefone_tipo | status |
+| :---: | :---: | :---: | :---: | ---: |
+| 1 | 1 | (00) 90000-0000 | 1 | 1 |
+| 2 | 1 | (00) 0000-0000 | 2 | 1 |
 
-- [ ] Endereços - `pessoas_enderecos`
+- [x] Endereços - `pessoas_enderecos`
 
-| id_endereco | id_pessoa | endereco | numero | complemento | bairro | cidade | estado | cep | created_at | updated_at | status |
-| :---: | :---: | :---: | :---: | :---: | :---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 1 | 1 | Rua Exemplo | 000 | Casa | Centro | Cidade | Estado | 00000-000 | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 1 |
-| 1 | 1 | Rua Exemplo 2 | 000 | Casa | Centro | Cidade | Estado | 00000-000 | 2019-01-01 00:00:00 | 2019-01-01 00:00:00 | 0 |
+| id_endereco | id_pessoa | endereco | numero | complemento | bairro | cidade | estado | cep | endereco_tipo | status |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | ---: | ---: | ---: | ---: |
+| 1 | 1 | Rua Exemplo | 000 | Casa | Centro | Cidade | Estado | 00000-000 | 1 | 1 |
+| 1 | 1 | Rua Exemplo 2 | 000 | Casa | Centro | Cidade | Estado | 00000-000 | 2 | 0 |
 
 ##### - Relacionamentos:
 
-- [ ] Pessoas - Telefones
-- [ ] Pessoas - Endereços
+- [x] Pessoas - Telefones
+- [x] Pessoas - Endereços
 
 ##### - Regras de Negócio:
 
-- [ ] Não pode haver duplicidade de CPF
-- [ ] Não pode haver duplicidade de RG
-- [ ] Não pode haver duplicidade de Telefone
-- [ ] Não pode haver duplicidade de Email
+- [x] Não pode haver duplicidade de CPF
+- [x] Não pode haver duplicidade de RG
+- [x] Não pode haver duplicidade de Telefone
+- [x] Não pode haver duplicidade de Email
+- [x] Validar CPF
+- [x] Validar Telefone
+- [x] Validar Email
+- [x] Validar Cep
+- [x] encriptar senha
 
 ##### - Observações:
 
-- [ ] O campo `status` é um campo que define se a pessoa está ativa ou não no sistema, por padrão, todas as pessoas cadastradas são ativas, porém, caso seja necessário, o usuário pode desativar uma pessoa, porém, não pode excluí-la do sistema.
+- [x] O campo `status` é um campo que define se está ativa ou não no sistema, por padrão, todas os registros cadastrados são ativos, porém, caso seja necessário, o usuário pode desativar uma registro.
+- [x] Para desativar uma pessoa, é necessário desativar todos os seus endereços e telefones, para que não haja registros ativos relacionados a uma pessoa desativada.
+- [x] Para desativar um endereço ou telefone, outro registro deve ser criado.
 
 ##### - Ações:
 
 ###### - Pessoas:
 
-- [ ] Cadastrar
-- [ ] Editar
-- [ ] Excluir (Apenas desativar)
-- [ ] Listar
-- [ ] Pesquisar
+- [x] Cadastrar
+- [x] Editar
+- [x] Excluir (Apenas desativar)
+- [x] Listar
+- [x] Pesquisar
+- [x] Avatar
 
 ###### - Telefones:
 
-- [ ] Cadastrar
-- [ ] Editar
-- [ ] Excluir (Apenas desativar)
+- [x] Cadastrar
+- [x] Editar
+- [x] Excluir (Apenas desativar)
 
 ###### - Endereços:
-
-- [ ] Cadastrar
-- [ ] Editar
-- [ ] Excluir (Apenas desativar)
+dsdcdc
+- [x] Cadastrar
+- [x] Editar
+- [x] Excluir (Apenas desativar)
