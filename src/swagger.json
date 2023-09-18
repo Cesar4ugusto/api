@@ -1,0 +1,956 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "Esta é uma documentação da API do projeto que servirá como base para o desenvolvimento do front-end.",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Cesar Augusto",
+            "email": "cesarapolidorio@gmail.com",
+            "url": "https://github.com/Cesar4ugusto"
+        }
+    },
+    "paths": {
+        "/pessoas": {
+            "post": {
+                "tags": ["Pessoas"],
+                "summary": "Cadastro de pessoas",
+                "description": "Criar um novo registro de pessoa no banco de dados.",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "nome_social": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "email_alternativo": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    },
+                                    "rg": {
+                                        "type": "string"
+                                    },
+                                    "nome_pai": {
+                                        "type": "string"
+                                    },
+                                    "nome_mae": {
+                                        "type": "string"
+                                    },
+                                    "data_nascimento": {
+                                        "type": "string"
+                                    },
+                                    "sexo": {
+                                        "type": "boolean"
+                                    },
+                                    "endereco":{
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "endereco": {
+                                                    "type": "string"
+                                                },
+                                                "numero": {
+                                                    "type": "string"
+                                                },
+                                                "complemento": {
+                                                    "type": "string"
+                                                },
+                                                "bairro": {
+                                                    "type": "string"
+                                                },
+                                                "cidade": {
+                                                    "type": "string"
+                                                },
+                                                "estado": {
+                                                    "type": "string"
+                                                },
+                                                "cep": {
+                                                    "type": "string"
+                                                },
+                                                "endereco_tipo": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "telefone": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "telefone": {
+                                                    "type": "string"
+                                                },
+                                                "telefone_tipo": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "nome": "Cesar Augusto Polidorio Machado",
+                                    "email": "cesarapolidorio@gmail.com",
+                                    "email_alternativo": null,
+                                    "cpf": "098.543.416-31",
+                                    "rg": "21167301",
+                                    "nome_pai": "Eber da Silva Rodrigues",
+                                    "nome_mae": "Tahis Aparecida Amaro Polidorio",
+                                    "data_nascimento": "15/10/2000",
+                                    "sexo": true,
+                                    "endereco": [
+                                        {
+                                            "endereco": "Rua Paulo Garcia",
+                                            "numero": "291",
+                                            "complemento": "Ap 302",
+                                            "bairro": "Benfica",
+                                            "cidade": "Juiz de Fora",
+                                            "estado": "MG",
+                                            "cep": "36090-340",
+                                            "endereco_tipo": 1
+                                        }
+                                    ],
+                                    "telefone": [
+                                        {
+                                            "telefone": "(32) 9 8499-7373",
+                                            "telefone_tipo": 1
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Pessoas"],
+                "summary": "Listagem de pessoas",
+                "description": "Lista todos os registros de pessoas no banco de dados.",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "nome": {
+                                                "type": "string"
+                                            },
+                                            "nome_social": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "email_alternativo": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
+                                            "avatar": {
+                                                "type": "string",
+                                                "nullable": true
+                                            },
+                                            "cpf": {
+                                                "type": "string"
+                                            },
+                                            "rg": {
+                                                "type": "string"
+                                            },
+                                            "nome_pai": {
+                                                "type": "string"
+                                            },
+                                            "nome_mae": {
+                                                "type": "string"
+                                            },
+                                            "data_nascimento": {
+                                                "type": "string"
+                                            },
+                                            "sexo": {
+                                                "type": "boolean"
+                                            },
+                                            "status": {
+                                                "type": "boolean"
+                                            },
+                                            "created_at": {
+                                                "type": "timestamp"
+                                            },
+                                            "updated_at": {
+                                                "type": "timestamp"
+                                            },
+                                            "enderecos":{
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id_endereco": {
+                                                            "type": "string"
+                                                        },
+                                                        "endereco": {
+                                                            "type": "string"
+                                                        },
+                                                        "numero": {
+                                                            "type": "string"
+                                                        },
+                                                        "complemento": {
+                                                            "type": "string"
+                                                        },
+                                                        "bairro": {
+                                                            "type": "string"
+                                                        },
+                                                        "cidade": {
+                                                            "type": "string"
+                                                        },
+                                                        "estado": {
+                                                            "type": "string"
+                                                        },
+                                                        "cep": {
+                                                            "type": "string"
+                                                        },
+                                                        "endereco_tipo": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "timestamp"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "timestamp"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "telefones": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id_telefone": {
+                                                            "type": "string"
+                                                        },
+                                                        "telefone": {
+                                                            "type": "string"
+                                                        },
+                                                        "telefone_tipo": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "timestamp"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "timestamp"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pessoas/{id_pessoa}/enderecos": {
+            "post": {
+                "tags": ["Pessoas"],
+                "summary": "Adiciona endereço",
+                "description": "Adiciona um novo endereço ao cadastro da pessoa.",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_pessoa",
+                        "in": "path",
+                        "description": "ID da pessoa que será vinculada ao endereço.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "endereco": {
+                                            "type": "string"
+                                        },
+                                        "numero": {
+                                            "type": "string"
+                                        },
+                                        "complemento": {
+                                            "type": "string"
+                                        },
+                                        "bairro": {
+                                            "type": "string"
+                                        },
+                                        "cidade": {
+                                            "type": "string"
+                                        },
+                                        "estado": {
+                                            "type": "string"
+                                        },
+                                        "cep": {
+                                            "type": "string"
+                                        },
+                                        "endereco_tipo": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "endereco": "Rua Paulo Garcia",
+                                        "numero": "291",
+                                        "complemento": "Ap 302",
+                                        "bairro": "Benfica",
+                                        "cidade": "Juiz de Fora",
+                                        "estado": "MG",
+                                        "cep": "36090-340",
+                                        "endereco_tipo": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pessoas/{id_pessoa}/telefones": {
+            "post": {
+                "tags": ["Pessoas"],
+                "summary": "Adiciona telefone",
+                "description": "Adiciona um novo telefone ao cadastro da pessoa.",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_pessoa",
+                        "in": "path",
+                        "description": "ID da pessoa que será vinculada ao telefone.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "telefone": {
+                                            "type": "string"
+                                        },
+                                        "telefone_tipo": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "telefone": "(32) 9 8499-7373",
+                                        "telefone_tipo": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pessoas/{id_pessoa}": {
+            "get": {
+                "tags": ["Pessoas"],
+                "summary": "Pesquisa de uma pessoa específica",
+                "description": "Lista o registros de uma pessoa específica no banco de dados.",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_pessoa",
+                        "in": "path",
+                        "description": "ID da pessoa que será pesquisada.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "nome": {
+                                            "type": "string"
+                                        },
+                                        "nome_social": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "email_alternativo": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "avatar": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "cpf": {
+                                            "type": "string"
+                                        },
+                                        "rg": {
+                                            "type": "string"
+                                        },
+                                        "nome_pai": {
+                                            "type": "string"
+                                        },
+                                        "nome_mae": {
+                                            "type": "string"
+                                        },
+                                        "data_nascimento": {
+                                            "type": "string"
+                                        },
+                                        "sexo": {
+                                            "type": "boolean"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "created_at": {
+                                            "type": "timestamp"
+                                        },
+                                        "updated_at": {
+                                            "type": "timestamp"
+                                        },
+                                        "enderecos":{
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id_endereco": {
+                                                        "type": "string"
+                                                    },
+                                                    "endereco": {
+                                                        "type": "string"
+                                                    },
+                                                    "numero": {
+                                                        "type": "string"
+                                                    },
+                                                    "complemento": {
+                                                        "type": "string"
+                                                    },
+                                                    "bairro": {
+                                                        "type": "string"
+                                                    },
+                                                    "cidade": {
+                                                        "type": "string"
+                                                    },
+                                                    "estado": {
+                                                        "type": "string"
+                                                    },
+                                                    "cep": {
+                                                        "type": "string"
+                                                    },
+                                                    "endereco_tipo": {
+                                                        "type": "string"
+                                                    },
+                                                    "status": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "timestamp"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "timestamp"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "telefones": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id_telefone": {
+                                                        "type": "string"
+                                                    },
+                                                    "telefone": {
+                                                        "type": "string"
+                                                    },
+                                                    "telefone_tipo": {
+                                                        "type": "string"
+                                                    },
+                                                    "status": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "timestamp"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "timestamp"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Pessoas"],
+                "summary": "Editar pessoa",
+                "description": "Edita apenas dados pessoais da pessoa.",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_pessoa",
+                        "in": "path",
+                        "description": "ID da pessoa que será editada.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "nome_social": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "email_alternativo": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    },
+                                    "rg": {
+                                        "type": "string"
+                                    },
+                                    "nome_pai": {
+                                        "type": "string"
+                                    },
+                                    "nome_mae": {
+                                        "type": "string"
+                                    },
+                                    "data_nascimento": {
+                                        "type": "string"
+                                    },
+                                    "sexo": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "example": {
+                                    "nome": "Cesar Augusto Polidorio Machado",
+                                    "email": "cesarapolidorio@gmail.com",
+                                    "email_alternativo": null,
+                                    "cpf": "098.543.416-31",
+                                    "rg": "21167301",
+                                    "nome_pai": "Eber da Silva Rodrigues",
+                                    "nome_mae": "Tahis Aparecida Amaro Polidorio",
+                                    "data_nascimento": "15/10/2000",
+                                    "sexo": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Pessoas"],
+                "summary": "Excluir pessoa",
+                "description": "Exclui (desativar) uma pessoa do banco de dados.",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_pessoa",
+                        "in": "path",
+                        "description": "ID da pessoa que será excluída.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pessoas/enderecos/{id_endereco}": {
+            "put": {
+                "tags": ["Pessoas"],
+                "summary": "Editar endereço",
+                "description": "Edita o endereço de uma pessoa",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_endereco",
+                        "in": "path",
+                        "description": "ID do endereço que será editado.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id_pessoa": {
+                                        "type": "string"
+                                    },
+                                    "endereco": {
+                                        "type": "string"
+                                    },
+                                    "numero": {
+                                        "type": "string"
+                                    },
+                                    "complemento": {
+                                        "type": "string"
+                                    },
+                                    "bairro": {
+                                        "type": "string"
+                                    },
+                                    "cidade": {
+                                        "type": "string"
+                                    },
+                                    "estado": {
+                                        "type": "string"
+                                    },
+                                    "cep": {
+                                        "type": "string"
+                                    },
+                                    "endereco_tipo": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "id_pessoa": "bf48e1ed-6fc9-4a87-9968-6f190cb5f803",
+                                    "endereco": "Rua Paulo Garcia",
+                                    "numero": "291",
+                                    "complemento": "Ap 302",
+                                    "bairro": "Benfica",
+                                    "cidade": "Juiz de Fora",
+                                    "estado": "MG",
+                                    "cep": "36090-340",
+                                    "endereco_tipo": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Pessoas"],
+                "summary": "Excluir (desativar) um endereço",
+                "description": "Exclui (desativa) o endereço de uma pessoa",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_endereco",
+                        "in": "path",
+                        "description": "ID do endereço que será apagado.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pessoas/telefones/{id_telefone}": {
+            "put": {
+                "tags": ["Pessoas"],
+                "summary": "Editar telefone",
+                "description": "Edita o telefone de uma pessoa",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_telefone",
+                        "in": "path",
+                        "description": "ID do telefone que será editado.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id_pessoa": {
+                                        "type": "string"
+                                    },
+                                    "telefone": {
+                                        "type": "string"
+                                    },
+                                    "telefone_tipo": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "id_pessoa": "bf48e1ed-6fc9-4a87-9968-6f190cb5f803",
+                                    "telefone": "(32) 9 8499-7373",
+                                    "telefone_tipo": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Pessoas"],
+                "summary": "Excluir (desativar) um telefone",
+                "description": "Exclui (desativa) o telefone de uma pessoa",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_telefone",
+                        "in": "path",
+                        "description": "ID do telefone que será apagado.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Errors": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
