@@ -3,6 +3,7 @@ import { Expose } from "class-transformer";
 import { v4 as uuidV4 } from "uuid";
 import { PessoasTelefones } from "./PessoasTelefones";
 import { PessoasEnderecos } from "./PessoasEnderecos";
+import { UsersToken } from "@/modules/auth/infra/typeorm/entities/UsersToken";
 
 @Entity("pessoas")
 class Pessoas {

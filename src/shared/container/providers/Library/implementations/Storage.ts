@@ -1,6 +1,6 @@
 import fs from "fs";
 import { resolve } from "path";
-import { IStorage } from "../IStorage";
+import { IStorage } from "../Interface";
 import upload from "@/config/upload";
 
 class Storage implements IStorage {

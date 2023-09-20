@@ -68,7 +68,7 @@ class PessoasRepository implements IPessoasRepository {
     }
 
     async findByEmail(email: string): Promise<Pessoas> {
-        return await this.repository.findOne({ email });
+        return await this.repository.createQueryBuilder("pessoas").where("pessoas.email = :email", { email }).addSelect("pessoas.senha").getOne();
     }
 
     async findByCPF(cpf: string): Promise<Pessoas> {

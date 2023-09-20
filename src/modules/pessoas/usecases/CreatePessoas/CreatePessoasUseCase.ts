@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "@/shared/errors/AppError";
 import { IPessoasRepository, IPessoasEnderecosRepository, IPessoasTelefonesRepository } from "@/modules/pessoas/repositories";
-import { ILibGeral } from "@/shared/container/providers/Library/ILibGeral";
+import { ILibGeral } from "@/shared/container/providers/Library/Interface";
 
 interface IEndereco {
     endereco: string;

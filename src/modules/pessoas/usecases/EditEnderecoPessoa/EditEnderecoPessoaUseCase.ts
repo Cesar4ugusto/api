@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IPessoasEnderecosRepository, IPessoasRepository } from "@/modules/pessoas/repositories";
-import { ILibGeral } from "@/shared/container/providers/Library/ILibGeral";
+import { ILibGeral } from "@/shared/container/providers/Library/Interface";
 import { AppError } from "@/shared/errors/AppError";
 
 interface IRequest {
