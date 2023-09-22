@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IPessoasRepository } from "@/modules/pessoas/repositories";
-import { IAuth, ILibGeral } from "@/shared/container/providers/Library/Interface";
+import { IAuth, ILibGeral } from "@/shared/container/providers/Interface";
 import { AppError } from "@/shared/errors/AppError";
 import auth from "@/config/auth";
 import { IUsersTokenRepository } from "@/modules/auth/repositories/IUsersTokenRepository";

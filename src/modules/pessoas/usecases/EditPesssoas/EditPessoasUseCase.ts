@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { ILibGeral } from "@/shared/container/providers/Library/Interface";
+import { ILibGeral } from "@/shared/container/providers/Interface";
 import { IPessoasRepository } from "@/modules/pessoas/repositories";
 import { AppError } from "@/shared/errors/AppError";
 

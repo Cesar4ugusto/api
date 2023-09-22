@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUsersTokenRepository } from "@/modules/auth/repositories/IUsersTokenRepository";
-import { IAuth, ILibGeral } from "@/shared/container/providers/Library/Interface";
+import { IAuth, ILibGeral } from "@/shared/container/providers/Interface";
 import { IPessoasRepository } from "@/modules/pessoas/repositories";
 import { AppError } from "@/shared/errors/AppError";
 import auth from "@/config/auth";
@@ -20,7 +20,7 @@ class RefreshTokenUseCase {
     ) {}
 
     async execute(refresh_token: string): Promise<ITokenResponse> {
-        const { email, sub } = this.authLibrary.verifyRefreshToken(refresh_token);
+        const { sub } = this.authLibrary.verifyRefreshToken(refresh_token);
         const id_pessoa = sub;
 
         const userToken = await this.model.findByUserIdAndRefreshToken(id_pessoa, refresh_token);

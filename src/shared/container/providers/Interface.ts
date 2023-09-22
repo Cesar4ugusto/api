@@ -1,10 +1,5 @@
-interface IPayloadToken {
+interface IPayload {
     sub: string;
-}
-
-interface IPayloadRefreshToken {
-    sub: string;
-    email: string;
 }
 
 interface ILibGeral {
@@ -34,9 +29,9 @@ interface IStorage {
 
 interface IAuth {
     generateToken(id: string): string;
-    verifyToken(token: string): IPayloadToken;
+    verifyToken(token: string): IPayload;
     generateRefreshToken(id: string): string;
-    verifyRefreshToken(token: string): IPayloadRefreshToken;
+    verifyRefreshToken(token: string): IPayload;
 }
 
 interface IMail {

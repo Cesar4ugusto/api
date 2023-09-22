@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { IUsersTokenRepository } from "@/modules/auth/repositories/IUsersTokenRepository";
 import { IPessoasRepository } from "@/modules/pessoas/repositories";
-import { ILibGeral } from "@/shared/container/providers/Library/Interface";
+import { ILibGeral } from "@/shared/container/providers/Interface";
 import { AppError } from "@/shared/errors/AppError";
 
 @injectable()
