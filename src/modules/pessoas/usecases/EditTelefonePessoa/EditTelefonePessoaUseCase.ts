@@ -4,7 +4,6 @@ import { ILibGeral } from "@/shared/container/providers/Library/Interface";
 import { AppError } from "@/shared/errors/AppError";
 
 interface IRequest {
-    id_pessoa: string;
     telefone: string;
     telefone_tipo: number;
 }
@@ -18,7 +17,7 @@ class EditTelefonePessoaUseCase {
         @inject("Library") private library: ILibGeral,
     ) {}
 
-    async execute(id_telefone: string, data: IRequest): Promise<void> {
+    async execute(id_pessoa: string, id_telefone: string, data: IRequest): Promise<void> {
         const fields = ["id_pessoa", "telefone", "telefone_tipo"];
 
         if (!this.library.requiredFields(fields, data)) throw new AppError("Preencha todos os campos obrigatórios para atualizar o cadastro de um telefone!");
@@ -26,13 +25,13 @@ class EditTelefonePessoaUseCase {
 
         data.telefone = this.library.apenasNumeros(data.telefone);
 
-        const pessoa = await this.modelPessoa.search(data.id_pessoa);
+        const pessoa = await this.modelPessoa.search(id_pessoa);
         if (!pessoa) throw new AppError("Pessoa não encontrada!");
 
         const exists = await this.model.findByTelefone(data.telefone);
         if (exists && exists.id_pessoa !== pessoa.id_pessoa) throw new AppError("Telefone já existe no cadastro de outra pessoa!");
 
-        await this.model.edit({ id_telefone: id_telefone, ...data });
+        await this.model.edit({ id_telefone, id_pessoa, ...data });
     }
 
 }
