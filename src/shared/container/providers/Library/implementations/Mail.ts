@@ -13,12 +13,11 @@ class Mail implements IMail {
             .createTestAccount()
             .then(account => {
                 const transporter = nodemailer.createTransport({
-                    host: account.smtp.host,
-                    port: account.smtp.port,
-                    secure: account.smtp.secure,
+                    host: process.env.MAIL_HOST,
+                    port: Number(process.env.MAIL_PORT),
                     auth: {
-                        user: account.user,
-                        pass: account.pass,
+                        user: process.env.MAIL_USERNAME,
+                        pass: process.env.MAIL_PASSWORD,
                     },
                 });
 

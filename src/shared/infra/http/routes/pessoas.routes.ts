@@ -1,4 +1,6 @@
 import { Router } from "express";
+import multer from "multer";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 import uploadConfig from "@/config/upload";
 
@@ -13,7 +15,6 @@ import { EditPessoasController } from "@/modules/pessoas/usecases/EditPesssoas/E
 import { EditTelefonePessoaController } from "@/modules/pessoas/usecases/EditTelefonePessoa/EditTelefonePessoaController";
 import { ListPessoasController } from "@/modules/pessoas/usecases/ListPessoas/ListPessoasController";
 import { SearchPessoaController } from "@/modules/pessoas/usecases/SearchPessoa/SearchPessoaController";
-import multer from "multer";
 import { AddAvatarPessoaController } from "@/modules/pessoas/usecases/AddAvatarPessoa/AddAvatarPessoaController";
 
 const uploadAvatar = multer(uploadConfig);
@@ -33,18 +34,18 @@ const editTelefone = new EditTelefonePessoaController();
 const list = new ListPessoasController();
 const search = new SearchPessoaController();
 
-pessoas_route.patch("/:id_pessoa/avatar", uploadAvatar.single("avatar"), addAvatar.handle);
-pessoas_route.post("/:id_pessoa/enderecos", addEndereco.handle);
-pessoas_route.post("/:id_pessoa/telefones", addTelefone.handle);
-pessoas_route.post("/", create.handle);
-pessoas_route.delete("/enderecos/:id_endereco", delEndereco.handle);
-pessoas_route.delete("/:id_pessoa", del.handle);
-pessoas_route.delete("/telefones/:id_telefone", delTelefone.handle);
-pessoas_route.put("/enderecos/:id_endereco", editEndereco.handle);
-pessoas_route.put("/:id_pessoa", edit.handle);
-pessoas_route.put("/telefones/:id_telefone", editTelefone.handle);
-pessoas_route.get("/", list.handle);
-pessoas_route.get("/:id_pessoa", search.handle);
+pessoas_route.patch("/:id_pessoa/avatar", ensureAuthenticated, uploadAvatar.single("avatar"), addAvatar.handle);
+pessoas_route.post("/:id_pessoa/enderecos", ensureAuthenticated, addEndereco.handle);
+pessoas_route.post("/:id_pessoa/telefones", ensureAuthenticated, addTelefone.handle);
+pessoas_route.post("/", ensureAuthenticated, create.handle);
+pessoas_route.delete("/enderecos/:id_endereco", ensureAuthenticated, delEndereco.handle);
+pessoas_route.delete("/:id_pessoa", ensureAuthenticated, del.handle);
+pessoas_route.delete("/telefones/:id_telefone", ensureAuthenticated, delTelefone.handle);
+pessoas_route.put("/:id_pessoa/enderecos/:id_endereco", ensureAuthenticated, editEndereco.handle);
+pessoas_route.put("/:id_pessoa", ensureAuthenticated, edit.handle);
+pessoas_route.put("/:id_pessoa/telefones/:id_telefone", ensureAuthenticated, editTelefone.handle);
+pessoas_route.get("/", ensureAuthenticated, ensureAuthenticated, list.handle);
+pessoas_route.get("/:id_pessoa", ensureAuthenticated, search.handle);
 
 
 export { pessoas_route };

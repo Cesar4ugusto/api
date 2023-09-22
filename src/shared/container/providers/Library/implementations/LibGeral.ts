@@ -24,6 +24,14 @@ class LibGeral implements ILibGeral {
         return moment().add(hours, "hour").toDate();
     }
 
+    compareIfBefore(start_date: Date, end_date: Date): boolean {
+        return moment(start_date).isBefore(end_date);
+    }
+
+    dateNow(): Date {
+        return moment().toDate();
+    }
+
     countYears(date: Date): number {
         const today = moment();
         const birthDate = moment(date);

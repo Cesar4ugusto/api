@@ -10,7 +10,7 @@ class SendForgotPasswordMailController {
         const usecase = container.resolve(SendForgotPasswordMailUseCase);
         await usecase.execute(email);
 
-        return response.send();
+        return response.status(204).send();
     }
 }
 

@@ -85,6 +85,10 @@ class PessoasRepository implements IPessoasRepository {
         pessoas.avatar = avatar;
         await this.repository.save(pessoas);
     }
+
+    async resetPassword(id_pessoa: string): Promise<Pessoas> {
+        return await this.repository.createQueryBuilder("pessoas").where("pessoas.id_pessoa = :id_pessoa", { id_pessoa }).addSelect("pessoas.senha").getOne();
+    }
 }
 
 export { PessoasRepository };

@@ -25,6 +25,7 @@ interface IPessoasRepository {
     findByCPF(cpf: string): Promise<Pessoas>;
     findByRG(rg: string): Promise<Pessoas>;
     updateAvatar(id_pessoa: string, avatar: string): Promise<void>;
+    resetPassword(id_pessoa: string): Promise<Pessoas>;
 }
 
 export { IPessoasRepository };
