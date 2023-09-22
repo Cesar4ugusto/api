@@ -11,6 +11,205 @@
         }
     },
     "paths": {
+        "/auth/session": {
+            "post": {
+                "tags": ["Autenticação"],
+                "summary": "Sessão",
+                "description": "Autentica o usuário e retorna o token de acesso.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/refresh-token": {
+            "post": {
+                "tags": ["Autenticação"],
+                "summary": "Refresh Token",
+                "description": "Atualiza o token de acesso.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "refresh_token": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/forgot-password": {
+            "post": {
+                "tags": ["Autenticação"],
+                "summary": "Esqueci minha senha",
+                "description": "Envia um e-mail com o link para redefinir a senha.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/reset-password?token={token}": {
+            "patch": {
+                "tags": ["Autenticação"],
+                "summary": "Redefinir senha",
+                "description": "Redefine a senha do usuário.",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Token de redefinição de senha.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/pessoas": {
             "post": {
                 "tags": ["Pessoas"],
@@ -142,6 +341,16 @@
                     },
                     "400": {
                         "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -288,6 +497,26 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -372,6 +601,16 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -425,6 +664,16 @@
                     },
                     "400": {
                         "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -591,6 +840,16 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -678,6 +937,16 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -712,11 +981,21 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/pessoas/enderecos/{id_endereco}": {
+        "/pessoas/{id_pessoa}/enderecos/{id_endereco}": {
             "put": {
                 "tags": ["Pessoas"],
                 "summary": "Editar endereço",
@@ -725,6 +1004,15 @@
                     { "bearerAuth": []}
                 ],
                 "parameters": [
+                    {
+                        "name": "id_pessoa",
+                        "in": "path",
+                        "description": "ID da pessoa ao qual o endereço será editado.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     {
                         "name": "id_endereco",
                         "in": "path",
@@ -741,9 +1029,6 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "id_pessoa": {
-                                        "type": "string"
-                                    },
                                     "endereco": {
                                         "type": "string"
                                     },
@@ -770,7 +1055,6 @@
                                     }
                                 },
                                 "example": {
-                                    "id_pessoa": "bf48e1ed-6fc9-4a87-9968-6f190cb5f803",
                                     "endereco": "Rua Paulo Garcia",
                                     "numero": "291",
                                     "complemento": "Ap 302",
@@ -797,9 +1081,97 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
                     }
                 }
-            },
+            }
+        },
+        "/pessoas/{id_pessoa}/telefones/{id_telefone}": {
+            "put": {
+                "tags": ["Pessoas"],
+                "summary": "Editar telefone",
+                "description": "Edita o telefone de uma pessoa",
+                "security": [
+                    { "bearerAuth": []}
+                ],
+                "parameters": [
+                    {
+                        "name": "id_pessoa",
+                        "in": "path",
+                        "description": "ID da pessoa ao qual o telefone será editado.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id_telefone",
+                        "in": "path",
+                        "description": "ID do telefone que será editado.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "telefone": {
+                                        "type": "string"
+                                    },
+                                    "telefone_tipo": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "telefone": "(32) 9 8499-7373",
+                                    "telefone_tipo": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pessoas/enderecos/{id_endereco}": {
             "delete": {
                 "tags": ["Pessoas"],
                 "summary": "Excluir (desativar) um endereço",
@@ -831,60 +1203,9 @@
                                 }
                             }
                         }
-                    }
-                }
-            }
-        },
-        "/pessoas/telefones/{id_telefone}": {
-            "put": {
-                "tags": ["Pessoas"],
-                "summary": "Editar telefone",
-                "description": "Edita o telefone de uma pessoa",
-                "security": [
-                    { "bearerAuth": []}
-                ],
-                "parameters": [
-                    {
-                        "name": "id_telefone",
-                        "in": "path",
-                        "description": "ID do telefone que será editado.",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "id_pessoa": {
-                                        "type": "string"
-                                    },
-                                    "telefone": {
-                                        "type": "string"
-                                    },
-                                    "telefone_tipo": {
-                                        "type": "string"
-                                    }
-                                },
-                                "example": {
-                                    "id_pessoa": "bf48e1ed-6fc9-4a87-9968-6f190cb5f803",
-                                    "telefone": "(32) 9 8499-7373",
-                                    "telefone_tipo": 1
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "204": {
-                        "description": "No Content"
                     },
-                    "400": {
-                        "description": "Bad Request",
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -894,7 +1215,9 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/pessoas/telefones/{id_telefone}": {
             "delete": {
                 "tags": ["Pessoas"],
                 "summary": "Excluir (desativar) um telefone",
@@ -919,6 +1242,16 @@
                     },
                     "400": {
                         "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Errors"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {
                             "application/json": {
                                 "schema": {
