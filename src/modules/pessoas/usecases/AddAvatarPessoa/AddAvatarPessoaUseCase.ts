@@ -1,4 +1,4 @@
-import { IStorage } from "@/shared/container/providers/Library/Interface";
+import { IStorage } from "@/shared/container/providers/Interface";
 import { inject, injectable } from "tsyringe";
 import { IPessoasRepository } from "@/modules/pessoas/repositories";
 import { AppError } from "@/shared/errors/AppError";

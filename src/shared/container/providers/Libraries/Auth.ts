@@ -2,13 +2,8 @@ import { IAuth } from '../Interface';
 import { sign, verify } from 'jsonwebtoken';
 import auth from '@/config/auth';
 
-interface IPayloadToken {
+interface IPayload {
     sub: string;
-}
-
-interface IPayloadRefreshToken {
-    sub: string;
-    email: string;
 }
 
 class Auth implements IAuth {
@@ -19,8 +14,8 @@ class Auth implements IAuth {
         })
     }
 
-    verifyToken(token: string): IPayloadToken {
-        return verify(token, auth.secret_token) as IPayloadToken;
+    verifyToken(token: string): IPayload {
+        return verify(token, auth.secret_token) as IPayload;
     }
 
     generateRefreshToken(id_pessoa: string): string {
@@ -30,8 +25,8 @@ class Auth implements IAuth {
         });
     }
 
-    verifyRefreshToken(token: string): IPayloadRefreshToken {
-        return verify(token, auth.secret_refresh_token) as IPayloadRefreshToken;
+    verifyRefreshToken(token: string): IPayload {
+        return verify(token, auth.secret_refresh_token) as IPayload;
     }
 }
 

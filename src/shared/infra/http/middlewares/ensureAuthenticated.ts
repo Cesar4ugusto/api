@@ -1,6 +1,6 @@
 import { AppError } from "@/shared/errors/AppError";
 import { NextFunction, Request, Response } from "express";
-import { Auth } from "@/shared/container/providers/Library/implementations/Auth";
+import { Auth } from "@/shared/container/providers/Libraries/Auth";
 
 export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
     const library = new Auth();

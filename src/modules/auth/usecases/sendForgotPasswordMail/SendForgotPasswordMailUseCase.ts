@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUsersTokenRepository } from "@/modules/auth/repositories/IUsersTokenRepository";
-import { ILibGeral, IMail } from "@/shared/container/providers/Library/Interface";
+import { ILibGeral, IMail } from "@/shared/container/providers/Interface";
 import { IPessoasRepository } from "@/modules/pessoas/repositories";
 import { resolve } from "path";
 import { AppError } from "@/shared/errors/AppError";
