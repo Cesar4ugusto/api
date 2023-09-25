@@ -1,6 +1,6 @@
 import { container } from "tsyringe";
 
-import "./providers/Library";
+import "./providers";
 
 import { IPessoasRepository, IPessoasEnderecosRepository, IPessoasTelefonesRepository } from "@/modules/pessoas/repositories";
 import { PessoasRepository, PessoasEnderecosRepository, PessoasTelefonesRepository } from "@/modules/pessoas/infra/typeorm/repositories";
